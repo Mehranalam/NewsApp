@@ -1,4 +1,4 @@
-# Size Limit [![Cult Of Martians][cult-img]][cult]
+# News App
 
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
@@ -11,7 +11,9 @@ The minimum **SDK** that can be used in this project is 21.
 A simple project to understand card view, recycle view & volley, picasso library
 
 <p align="center">
-  <img src="./img/example.png" alt="Size Limit CLI" width="738">
+  <img src=".https://raw.githubusercontent.com/Mehranalam/NewsApp/main/photo5897855993335887852.jpg" alt="Size Limit CLI" width="738">
+</p> <p align="center">
+  <img src=".https://raw.githubusercontent.com/Mehranalam/NewsApp/main/photo5897855993335887852.jpg" alt="Size Limit CLI" width="738">
 </p>
 
 With **[GitHub action]** Size Limit will post bundle size changes as a comment

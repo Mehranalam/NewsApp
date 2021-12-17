@@ -14,4 +14,4 @@ Tools:
 - News API : https://github.com/SauravKanchan/NewsAPI
 
 
-Donwload APK : (apk/debug/app-debug.apk)[https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk]
+Donwload APK : [apk/debug/app-debug.apk](https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk)

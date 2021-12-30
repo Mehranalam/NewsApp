@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.card.MaterialCardView;
 
 import org.json.*;
@@ -39,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> authors = new ArrayList<>();
     private ArrayList<String> urlToImage = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycleView);
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String urlNewsApp = "https://saurav.tech/NewsAPI/everything/cnn.json";

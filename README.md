@@ -14,6 +14,7 @@ Tools:
 - Picasso Library : https://github.com/square/picasso
 - Volley Library : https://github.com/google/volley & https://developer.android.com/training/volley
 - News API : https://github.com/SauravKanchan/NewsAPI
+- Shimmer Effect : https://facebook.github.io/shimmer-android/ 
 
 
 

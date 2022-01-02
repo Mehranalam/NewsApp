@@ -6,8 +6,6 @@ The minimum **SDK** that can be used in this project is 21.
 
 **News daily refresh**
 
-A simple project to understand card view, recycle view & volley, picasso library
-
 
 Tools:
 

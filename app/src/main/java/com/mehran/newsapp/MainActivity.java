@@ -1,5 +1,6 @@
 package com.mehran.newsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.media.Ringtone;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.*;
 
@@ -34,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     private JSONArray data;
     private RecyclerView recyclerView;
+    private BottomNavigationView bottomNavigationView;
 
-    private ArrayList<String> titles = new ArrayList<>();
-    private ArrayList<String> description = new ArrayList<>();
-    private ArrayList<String> authors = new ArrayList<>();
-    private ArrayList<String> urlToImage = new ArrayList<>();
+    public ArrayList<String> titles = new ArrayList<>();
+    public ArrayList<String> description = new ArrayList<>();
+    public ArrayList<String> authors = new ArrayList<>();
+    public ArrayList<String> urlToImage = new ArrayList<>();
 
 
     @Override
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycleView);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -72,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 // TODO : fix this for list urlto image view and other
 
-                                RecyclerView.LayoutManager LayoutManager = new
-                                        LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL
-                                        , false);
-                                recyclerView.setLayoutManager(LayoutManager);
-                                recyclerView.setAdapter(new CycleAdapter(getApplicationContext(), urlToImage
-                                        , titles, description, authors));
+//                                RecyclerView.LayoutManager LayoutManager = new
+//                                        LinearLayoutManager(NewsFragment, LinearLayoutManager.VERTICAL
+//                                        , false);
+//                                recyclerView.setLayoutManager(LayoutManager);
+//                                recyclerView.setAdapter(new CycleAdapter(getApplicationContext(), urlToImage
+//                                        , titles, description, authors));
                             }
 
                         } catch (JSONException err) {
@@ -93,5 +99,33 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(stringRequest);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors);
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragmentContiner, newsFragment , null)
+                .commit();
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.news) {
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.fragmentContiner, newsFragment, null)
+                            .commit();
+                    return true;
+                } else {
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.fragmentContiner, Favorite_Fragment.class, null)
+                            .commit();
+                    return true;
+                }
+            }
+        });
     }
 }

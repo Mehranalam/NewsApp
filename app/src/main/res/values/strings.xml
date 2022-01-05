@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsApp</string>
+    <string name="goToUrl">⚛️ open in <font color="#000000000">Browser</font></string>
 </resources>

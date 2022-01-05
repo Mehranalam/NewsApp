@@ -1,16 +1,19 @@
 package com.mehran.newsapp;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.picasso.Picasso;
@@ -24,19 +27,22 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
     private ArrayList<String> titles = new ArrayList<>();
     private ArrayList<String> descriptions = new ArrayList<>();
     private ArrayList<String> authors = new ArrayList<>();
+    public ArrayList<String> url = new ArrayList<>();
 
 
     public CycleAdapter(Context context
             , ArrayList<String> urlImage
             , ArrayList<String> titles
             , ArrayList<String> descriptions
-            , ArrayList<String> authors) {
+            , ArrayList<String> authors
+            , ArrayList<String> url) {
 
         this.authors = authors;
         this.context = context;
         this.descriptions = descriptions;
         this.titles = titles;
         this.urlImage = urlImage;
+        this.url = url;
 
     }
 
@@ -47,10 +53,12 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
         public TextView title;
         public TextView author;
         public ShimmerFrameLayout shimmerFrameLayout;
+        public ImageView like;
 
         public myCycleAdapter(@NonNull View itemView) {
             super(itemView);
 
+            like = itemView.findViewById(R.id.like);
             imageView = itemView.findViewById(R.id.image);
             description = itemView.findViewById(R.id.description);
             title = itemView.findViewById(R.id.title);
@@ -70,6 +78,8 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
 
     @Override
     public void onBindViewHolder(@NonNull myCycleAdapter holder, int position) {
+        int newPosition = position;
+
         holder.shimmerFrameLayout.startShimmer();
         Runnable runnable = new Runnable() {
             @Override
@@ -79,11 +89,23 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
         };
 
         Handler handler = new Handler();
-        handler.postDelayed(runnable ,3000);
+        handler.postDelayed(runnable, 3000);
         Picasso.with(context).load(urlImage.get(position)).into(holder.imageView);
         holder.author.setText(authors.get(position));
         holder.title.setText(titles.get(position));
         holder.description.setText(descriptions.get(position));
+        holder.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHandler dbHandler = new DBHandler(context);
+                dbHandler.addData(titles.get(newPosition) ,url.get(newPosition) ,urlImage.get(newPosition));
+
+                TransferData.isTransferData = true;
+                Toast.makeText(context, "this Articles saved", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
 
     }
 

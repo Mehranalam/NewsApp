@@ -2,18 +2,12 @@ package com.mehran.newsapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
-import android.app.ActionBar;
-import android.graphics.Bitmap;
-import android.media.Ringtone;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,17 +15,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.*;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> description = new ArrayList<>();
     public ArrayList<String> authors = new ArrayList<>();
     public ArrayList<String> urlToImage = new ArrayList<>();
-
+    public ArrayList<String> url = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycleView);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -71,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                                     titles.add(data.getJSONObject(i).getString("title"));
                                     description.add(data.getJSONObject(i).getString("description"));
                                     authors.add(data.getJSONObject(i).getString("author"));
+                                    url.add(data.getJSONObject(i).getString("url"));
 
                                 } catch (JSONException e) {
                                     System.out.println("field for i cant load json file");
@@ -104,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors);
+        NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors, url);
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.fragmentContiner, newsFragment , null)
+                .add(R.id.fragmentContiner, newsFragment, null)
                 .commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

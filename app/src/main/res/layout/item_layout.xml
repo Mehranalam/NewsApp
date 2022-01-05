@@ -33,18 +33,18 @@
                 <!-- Title, secondary and supporting text -->
 
 
-                <ImageView
-                    android:id="@+id/like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
-
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <ImageView
+                    android:id="@+id/like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
                 <TextView
                     android:id="@+id/author"

@@ -19,6 +19,9 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapter> {
 
@@ -28,6 +31,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
     private ArrayList<String> descriptions = new ArrayList<>();
     private ArrayList<String> authors = new ArrayList<>();
     public ArrayList<String> url = new ArrayList<>();
+    private Executor executor ;
 
 
     public CycleAdapter(Context context
@@ -94,10 +98,19 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
         holder.author.setText(authors.get(position));
         holder.title.setText(titles.get(position));
         holder.description.setText(descriptions.get(position));
+        executor = new Executor() {
+            @Override
+            public void execute(Runnable runnable) {
+                runnable.run();
+            }
+        };
+        DBHandler dbHandler = new DBHandler(context,executor);
+
+
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHandler dbHandler = new DBHandler(context);
+
                 dbHandler.addData(titles.get(newPosition) ,url.get(newPosition) ,urlImage.get(newPosition));
 
                 TransferData.isTransferData = true;

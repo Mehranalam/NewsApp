@@ -17,9 +17,9 @@ import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder> {
 
-    private List<String> favoriteImage;
-    private List<String> title;
-    private List<String> goToUrl;
+    private ArrayList<String> favoriteImage;
+    private ArrayList<String> title;
+    private ArrayList<String> goToUrl;
 
     private Context context;
 
@@ -41,11 +41,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     // List<String> favoriteImage ,
     //                           List<String> title
 
-    public FavoriteAdapter(Context context ) {
+    public FavoriteAdapter(Context context ,
+                           ArrayList<String> title,
+                           ArrayList<String> favoriteImage,
+                           ArrayList<String> goToUrl) {
 
         this.context = context;
-        this.favoriteImage = favoriteImage;
         this.title = title;
+        this.favoriteImage = favoriteImage;
         this.goToUrl = goToUrl;
     }
 
@@ -60,13 +63,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteHolder holder, int position) {
-//        Picasso.with(context).load(favoriteImage.).into(holder.favoriteImage);
-//        holder.title.setText("need");
+        Picasso.with(context).load(favoriteImage.get(position)).into(holder.favoriteImage);
+        holder.title.setText(title.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return TransferData.count;
+        return title.size();
     }
 }

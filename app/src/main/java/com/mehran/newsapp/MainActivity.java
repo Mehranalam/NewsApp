@@ -23,6 +23,9 @@ import org.json.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        // build a thread pool ExecutorService j = Executors.newFixedThreadPool
+        // 1) read
+        // 2) write
 
         recyclerView = findViewById(R.id.recycleView);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);

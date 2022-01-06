@@ -2,9 +2,7 @@ package com.mehran.newsapp;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,22 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Database;
-import androidx.room.Room;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Favorite_Fragment extends Fragment {
     private RecyclerView recyclerView;
-    ArrayList<String> title;
-    ArrayList<String> url;
-    ArrayList<String> imageurl;
+    ArrayList<String> title = new ArrayList<>();
+    ArrayList<String> url = new ArrayList<>();
+    ArrayList<String> imageurl = new ArrayList<>();
 
-    private Executor executor ;
+    private Executor executor;
 
     public Favorite_Fragment() {
         super(R.layout.favorite_fragment_layout);
@@ -47,11 +40,22 @@ public class Favorite_Fragment extends Fragment {
         // TODO : bug is here not get data from while
 
         DBHandler handler = new DBHandler(getContext(), executor);
-        title = new ArrayList<>(handler.readData(1));
-        imageurl = new ArrayList<>(handler.readData(2));
-        url = new ArrayList<>(handler.readData(3));
+        Cursor cursor = handler.readData();
 
-        if (title.size() != 0) {
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            do {
+                String item = cursor.getString(cursor.getColumnIndexOrThrow("Title"));
+                title.add(item);
+                String itemImageUrl = cursor.getString(cursor.getColumnIndexOrThrow("ImageUrl"));
+                imageurl.add(itemImageUrl);
+                String itemUrl = cursor.getString(cursor.getColumnIndexOrThrow("Url"));
+                url.add(itemUrl);
+            } while (cursor.moveToNext());
+
+
+            cursor.close();
+
             recyclerView = view.findViewById(R.id.favoriteRecycleView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(new FavoriteAdapter(getContext(), title, imageurl, url));

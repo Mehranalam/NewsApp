@@ -6,17 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class DBHandler extends SQLiteOpenHelper {
     private Executor executor;
     private Cursor cursor;
 
-    private static final String databaseName = "newsApp.db";
+    private static final String databaseName = "Store.db";
     private static final int version = 1;
-    private static final String TableName = "Favorite";
+    private static final String TableName = "FavoriteFragment";
     private static final String idColume = "ID";
     public static final String titleColume = "Title";
     public static final String imageUrlColume = "ImageUrl";
@@ -59,25 +57,17 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<String> readData(int ColumeName) {
-        ArrayList<String> itemsFromColume = new ArrayList<>();
-
+    public Cursor readData() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                SQLiteDatabase dp = DBHandler.this.getReadableDatabase();
+                SQLiteDatabase dp = getReadableDatabase();
 
-                Cursor cursor = dp.rawQuery("SELECT * FROM "+TableName,null);
-
-                while (cursor.moveToFirst()){
-                    String getItem = cursor.getString(ColumeName);
-
-                    itemsFromColume.add(getItem);
-                }
+                cursor = dp.rawQuery("SELECT * FROM " + TableName, null);
             }
         });
+        return cursor;
 
-        return itemsFromColume;
     }
 
     @Override

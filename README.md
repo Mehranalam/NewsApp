@@ -13,7 +13,12 @@ Tools:
 - Volley Library : https://github.com/google/volley & https://developer.android.com/training/volley
 - News API : https://github.com/SauravKanchan/NewsAPI
 - Shimmer Effect : https://facebook.github.io/shimmer-android/ 
+- Matrial Library : https://material.io/components?platform=android
 
+Todo :
+
+- [ ] Change HTTP library from [Volly](https://developer.android.com/training/volley) to [Retorfit](https://square.github.io/retrofit/)
+- [ ] Change App architecture code to [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel#:~:text=Model%E2%80%93view%E2%80%93viewmodel%20(MVVM,is%20not%20dependent%20on%20any)
 
 
 <div>

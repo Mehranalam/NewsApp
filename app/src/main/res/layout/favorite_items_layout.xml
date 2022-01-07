@@ -11,13 +11,13 @@
         <ImageView
             android:id="@+id/favoriteImage"
             android:layout_width="93dp"
-            android:layout_height="83dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
         <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="match_parent"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -29,19 +29,15 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/favoriteOpen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="@string/goToUrl"
+            <Button
+                android:id="@+id/buttonUrl"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#2739B0"
+                android:text="Show"
+                android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textSize="12sp" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
 
         </LinearLayout>
     </LinearLayout>

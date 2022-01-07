@@ -1,10 +1,8 @@
 package com.mehran.newsapp;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,15 +11,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapter> {
 
@@ -31,7 +27,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
     private ArrayList<String> descriptions = new ArrayList<>();
     private ArrayList<String> authors = new ArrayList<>();
     public ArrayList<String> url = new ArrayList<>();
-    private Executor executor ;
+    private Executor executor;
 
 
     public CycleAdapter(Context context
@@ -93,7 +89,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
         };
 
         Handler handler = new Handler();
-        handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 2000);
         Picasso.with(context).load(urlImage.get(position)).into(holder.imageView);
         holder.author.setText(authors.get(position));
         holder.title.setText(titles.get(position));
@@ -104,14 +100,13 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
                 runnable.run();
             }
         };
-        DBHandler dbHandler = new DBHandler(context,executor);
+        DBHandler dbHandler = new DBHandler(context, executor);
 
 
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                dbHandler.addData(titles.get(newPosition) ,url.get(newPosition) ,urlImage.get(newPosition));
+                dbHandler.addData(titles.get(newPosition), url.get(newPosition), urlImage.get(newPosition));
 
                 TransferData.isTransferData = true;
                 Toast.makeText(context, "this Articles saved", Toast.LENGTH_SHORT)

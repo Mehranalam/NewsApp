@@ -53,7 +53,6 @@ public class Favorite_Fragment extends Fragment {
                 url.add(itemUrl);
             } while (cursor.moveToNext());
 
-
             cursor.close();
 
             recyclerView = view.findViewById(R.id.favoriteRecycleView);

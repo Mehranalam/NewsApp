@@ -1,13 +1,16 @@
 package com.mehran.newsapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -27,14 +30,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
         public ImageView favoriteImage;
         public TextView title;
-        public TextView goToUrl;
+        public Button button;
 
         public FavoriteHolder(@NonNull View itemView) {
             super(itemView);
 
             favoriteImage = itemView.findViewById(R.id.favoriteImage);
             title = itemView.findViewById(R.id.favoriteTitle);
-            goToUrl = itemView.findViewById(R.id.favoriteOpen);
+            button = itemView.findViewById(R.id.buttonUrl);
         }
     }
 
@@ -63,9 +66,19 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteHolder holder, int position) {
+        int localPositionVar = position;
         Picasso.with(context).load(favoriteImage.get(position)).into(holder.favoriteImage);
         holder.title.setText(title.get(position));
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = goToUrl.get(localPositionVar);
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
 
+                customTabsIntent.launchUrl(context , Uri.parse(url));
+            }
+        });
     }
 
     @Override

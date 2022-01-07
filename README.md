@@ -16,4 +16,4 @@ Tools:
 
 
 
-Donwload APK : [apk/debug/app-debug.apk](https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk)
+Donwload APK : ![apk/debug/app-debug.apk](https://raw.githubusercontent.com/Mehranalam/NewsApp/main/tmp/google-play-badge.png)(https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk)

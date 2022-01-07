@@ -18,7 +18,7 @@ Tools:
 Todo :
 
 - [ ] Change HTTP library from [Volly](https://developer.android.com/training/volley) to [Retorfit](https://square.github.io/retrofit/)
-- [ ] Change App architecture code to [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
+- [ ] Change App architecture to [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 
 
 <div>

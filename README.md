@@ -16,4 +16,8 @@ Tools:
 
 
 
-Donwload APK : ![apk/debug/app-debug.apk](https://raw.githubusercontent.com/Mehranalam/NewsApp/main/tmp/google-play-badge.png)(https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk)
+<div>
+  <a href="https://github.com/Mehranalam/NewsApp/blob/main/apk/debug/app-debug.apk">
+  <img src="https://raw.githubusercontent.com/Mehranalam/NewsApp/main/tmp/google-play-badge.png" width="50" height"70"/>
+    </a>
+  </div>

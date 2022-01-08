@@ -20,6 +20,7 @@ Todo :
 - [ ] Change HTTP library from [Volly](https://developer.android.com/training/volley) to [Retorfit](https://square.github.io/retrofit/)
 - [ ] Change App architecture to [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 - [X] Use [Multithreading](https://developer.android.com/guide/components/processes-and-threads)
+- [ ] Use Clean [Architecture](https://www.toptal.com/android/android-apps-mvvm-with-clean-architecture)
 
 
 <div>

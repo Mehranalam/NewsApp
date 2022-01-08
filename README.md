@@ -10,7 +10,7 @@ The minimum **SDK** that can be used in this project is 21.
 Tools:
 
 - Picasso Library : https://github.com/square/picasso
-- Volley Library : https://github.com/google/volley & https://developer.android.com/training/volley
+- <s>Volley Library</s> : https://github.com/google/volley & https://developer.android.com/training/volley
 - News API : https://github.com/SauravKanchan/NewsAPI
 - Shimmer Effect : https://facebook.github.io/shimmer-android/ 
 - Matrial Library : https://material.io/components?platform=android

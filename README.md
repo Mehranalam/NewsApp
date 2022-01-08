@@ -1,6 +1,6 @@
 # News App
 
-A simple news app using volley library and picasso library 
+A Awesome news app using volley library and picasso library 
 This app uses an open source API for its news sources. 
 The minimum **SDK** that can be used in this project is 21.
 

@@ -13,7 +13,7 @@ Tools:
 - <s>Volley Library</s> : https://github.com/google/volley & https://developer.android.com/training/volley
 - News API : https://github.com/SauravKanchan/NewsAPI
 - Shimmer Effect : https://facebook.github.io/shimmer-android/ 
-- Matrial Library : https://material.io/components?platform=android
+- Material Library : https://material.io/components?platform=android
 
 Todo :
 

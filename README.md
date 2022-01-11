@@ -1,5 +1,5 @@
 # News App
-<img src="https://img.shields.io/github/issues-closed/mehranalam/newsapp"/> <img src="https://img.shields.io/github/downloads/mehranalam/newsapp/total"/>
+<img src="https://img.shields.io/github/issues-closed/mehranalam/newsapp"/>
 
 A Awesome news app using <s>volley</s> library and picasso library 
 This app uses an open source API for its news sources. 

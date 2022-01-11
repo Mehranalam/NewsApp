@@ -1,6 +1,7 @@
 package com.mehran.newsapp;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.picasso.Picasso;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 
@@ -102,10 +105,10 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.myCycleAdapt
         };
         DBHandler dbHandler = new DBHandler(context, executor);
 
-
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
                 dbHandler.addData(titles.get(newPosition), url.get(newPosition), urlImage.get(newPosition));
 
                 TransferData.isTransferData = true;

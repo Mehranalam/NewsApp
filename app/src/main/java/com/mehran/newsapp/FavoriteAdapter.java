@@ -1,5 +1,6 @@
 package com.mehran.newsapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -11,12 +12,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder> {
 
@@ -25,16 +29,26 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     private ArrayList<String> goToUrl;
 
     private Context context;
+    private int actulePosition;
+
+    private Executor executor = new Executor() {
+        @Override
+        public void execute(Runnable runnable) {
+            runnable.run();
+        }
+    };
 
     class FavoriteHolder extends RecyclerView.ViewHolder {
 
         public ImageView favoriteImage;
         public TextView title;
         public Button button;
+        public ImageView deleteItemFromList;
 
         public FavoriteHolder(@NonNull View itemView) {
             super(itemView);
 
+            deleteItemFromList = itemView.findViewById(R.id.deleteFavoriteItem);
             favoriteImage = itemView.findViewById(R.id.favoriteImage);
             title = itemView.findViewById(R.id.favoriteTitle);
             button = itemView.findViewById(R.id.buttonUrl);
@@ -61,6 +75,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.favorite_items_layout ,parent ,false);
 
+        // View view = LayoutInflater.from(parent.getContext())
+        // .inflate(R.Layout.EXAMPLE ,parent ,flase);
+
+
         return new FavoriteHolder(view);
     }
 
@@ -69,6 +87,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         int localPositionVar = position;
         Picasso.with(context).load(favoriteImage.get(position)).into(holder.favoriteImage);
         holder.title.setText(title.get(position));
+        DBHandler dbHandler = new DBHandler(context ,executor);
+
+        holder.deleteItemFromList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHandler.deleteData(title.get(localPositionVar) ,goToUrl.get(localPositionVar) ,favoriteImage.get(localPositionVar));
+                removeItem(holder.getAdapterPosition());
+            }
+        });
+
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,4 +113,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public int getItemCount() {
         return title.size();
     }
+
+    public void removeItem(int position) {
+        title.remove(position);
+        favoriteImage.remove(position);
+        goToUrl.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position ,title.size());
+        notifyItemRangeChanged(position ,favoriteImage.size());
+        notifyItemRangeChanged(position ,goToUrl.size());
+    }
 }
+
+

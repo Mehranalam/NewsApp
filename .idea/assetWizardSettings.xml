@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/favorite_border/baseline_favorite_border_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/delete_outline/baseline_delete_outline_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_favorite_border_24" />
+                            <entry key="color" value="ff0000" />
+                            <entry key="outputName" value="ic_baseline_delete_outline_24" />
                           </map>
                         </option>
                       </PersistentState>

@@ -2,11 +2,15 @@ package com.mehran.newsapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 
 import com.android.volley.Request;
@@ -31,8 +35,13 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     private JSONArray data;
-    private RecyclerView recyclerView;
     private BottomNavigationView bottomNavigationView;
+    private Executor executor = new Executor() {
+        @Override
+        public void execute(Runnable runnable) {
+            runnable.run();
+        }
+    };
 
     public ArrayList<String> titles = new ArrayList<>();
     public ArrayList<String> description = new ArrayList<>();
@@ -50,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         // 1) read
         // 2) write
 
-        recyclerView = findViewById(R.id.recycleView);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
+
+        DBHandler handler = new DBHandler(getApplicationContext() ,executor);
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -108,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors, url);
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.fragmentContiner, newsFragment, null)
+                .replace(R.id.fragmentContiner, newsFragment, null)
                 .commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

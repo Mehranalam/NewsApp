@@ -56,6 +56,21 @@ public class DBHandler extends SQLiteOpenHelper {
         });
     }
 
+    public void deleteData(String title ,String url ,String imageUrl) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                SQLiteDatabase db = DBHandler.this.getWritableDatabase();
+
+                db.delete(TableName, "Title=?", new String[]{title});
+                db.delete(TableName, "ImageUrl=?", new String[]{imageUrl});
+                db.delete(TableName, "Url=?", new String[]{url});
+
+                db.close();
+            }
+        });
+
+    }
 
     public Cursor readData() {
         executor.execute(new Runnable() {

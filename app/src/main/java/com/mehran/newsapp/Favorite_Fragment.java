@@ -3,11 +3,13 @@ package com.mehran.newsapp;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +42,7 @@ public class Favorite_Fragment extends Fragment {
         // TODO : bug is here not get data from while
 
         DBHandler handler = new DBHandler(getContext(), executor);
+
         Cursor cursor = handler.readData();
 
         if (cursor.getCount() != 0) {
@@ -57,7 +60,7 @@ public class Favorite_Fragment extends Fragment {
 
             recyclerView = view.findViewById(R.id.favoriteRecycleView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerView.setAdapter(new FavoriteAdapter(getContext(), title, imageurl, url));
+            recyclerView.setAdapter(new FavoriteAdapter(getContext() , title, imageurl, url));
         } else {
             Toast.makeText(getContext(), "favorite has empty", Toast.LENGTH_SHORT)
                     .show();

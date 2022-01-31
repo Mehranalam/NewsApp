@@ -96,7 +96,11 @@ public class MainActivity extends AppCompatActivity {
 //                                recyclerView.setAdapter(new CycleAdapter(getApplicationContext(), urlToImage
 //                                        , titles, description, authors));
                             }
-
+                            NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors, url);
+                            getSupportFragmentManager().beginTransaction()
+                                    .setReorderingAllowed(true)
+                                    .replace(R.id.fragmentContiner, newsFragment, null)
+                                    .commit();
                         } catch (JSONException err) {
                             System.out.println("field for i cant load json file");
                         }
@@ -116,10 +120,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         NewsFragment newsFragment = new NewsFragment(urlToImage, titles, description, authors, url);
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.fragmentContiner, newsFragment, null)
-                .commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

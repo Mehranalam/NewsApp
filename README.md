@@ -30,3 +30,9 @@ Todo :
   <img src="https://raw.githubusercontent.com/Mehranalam/NewsApp/main/tmp/google-play-badge.png" width="200" height"300"/>
     </a>
   </div>
+  
+More :
+  - Bardeal : https://github.com/Mehranalam/Bardeal
+  - Guard : https://github.com/Mehranalam/Guard
+  - Emoji : https://github.com/Mehranalam/Emoji
+  - Clock Arduino : https://github.com/Mehranalam/Clock

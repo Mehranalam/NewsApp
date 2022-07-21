@@ -26,7 +26,7 @@ Todo :
 
 
 <div>
-  <a href="https://github.com/Mehranalam/NewsApp/raw/main/apk/debug/newsApp.apk">
+  <a href="https://github.com/Mehranalam/NewsApp/raw/main/apk/debug/NewsApp.apk">
   <img src="https://raw.githubusercontent.com/Mehranalam/NewsApp/main/tmp/google-play-badge.png" width="200" height"300"/>
     </a>
   </div>

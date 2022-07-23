@@ -1,4 +1,4 @@
-# News App
+# [News App](https://mehranalam.github.io/NewsApp/)
 <img src="https://img.shields.io/github/issues-closed/mehranalam/newsapp"/>
 
 A Awesome news app using <s>volley</s> library and picasso library 

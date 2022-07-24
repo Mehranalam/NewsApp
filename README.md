@@ -1,5 +1,5 @@
 # [News App](https://mehranalam.github.io/NewsApp/)
-<img src="https://img.shields.io/github/issues-closed/mehranalam/newsapp"/>
+<img src="https://img.shields.io/github/issues-closed/mehranalam/newsapp"/> <img src="https://img.shields.io/badge/status-complement-success"/>
 
 A Awesome news app using <s>volley</s> library and picasso library 
 This app uses an open source API for its news sources. 
